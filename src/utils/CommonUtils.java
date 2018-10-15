@@ -1,6 +1,7 @@
 package utils;
 
 import com.intellij.openapi.vfs.VirtualFile;
+import org.codehaus.plexus.util.Os;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,5 +50,16 @@ public class CommonUtils {
         }
         return false;
     }
+
+    public static String getCmdFileName(String name) {
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            return name + ".exe";
+        } else if (Os.isFamily(Os.FAMILY_MAC)) {
+            return name + "-mac";
+        } else {
+            return name;
+        }
+    }
+
 
 }
