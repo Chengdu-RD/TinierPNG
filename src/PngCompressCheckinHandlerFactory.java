@@ -10,6 +10,9 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.PairConsumer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import task.Compressor;
+import task.CompressorCompat;
+import task.PngQuantCompressor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +36,8 @@ public class PngCompressCheckinHandlerFactory extends CheckinHandlerFactory {
                 if (isChecked) {
                     ArrayList<VirtualFile> pngFiles = getPngFiles(checkinProjectPanel);
                     if (!pngFiles.isEmpty()) {
+                        Compressor compressor = new PngQuantCompressor();
+                        new CompressorCompat(compressor).optimize(checkinProjectPanel.getProject(), pngFiles, true, true);
                         LocalFileSystem.getInstance().refreshFiles(pngFiles);
 
                     }

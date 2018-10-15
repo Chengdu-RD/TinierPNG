@@ -16,7 +16,7 @@ import java.util.*;
 public class CompressorCompat {
     private Compressor mCompressor;
 
-    CompressorCompat(@NotNull Compressor compressor) {
+    public CompressorCompat(@NotNull Compressor compressor) {
         mCompressor = compressor;
     }
 
